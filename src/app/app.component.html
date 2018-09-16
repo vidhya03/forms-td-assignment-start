@@ -13,6 +13,56 @@
            Upon submitting the form, you should simply print the Value of the Form to the Console.
            Optionally, display it in your template.
       -->
+      <form (ngSubmit)="onSubmit()" #f="ngForm">
+        <div class="form-group">
+          <label for="email">Mail:</label>
+          <input required email class="form-control" ngModel #email="ngModel" type="email" name="email" id="email" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$">
+          <div class="md-errors-spacer" [hidden]="email.valid || email.untouched">
+            <div *ngIf="email.errors && email.errors.required">
+              Email is required
+            </div>
+            <div *ngIf="email.errors && email.errors.pattern">
+              Email is invalid
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="subscription">Subscription:</label>
+          <select class="form-control" name="subscriptions" id="subscriptions" ngModel [(ngModel)]="defaultSubscriptions">
+            <option *ngFor="let sub of subscriptionsList" value="{{sub.key}}">{{sub.value}}</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="password">Password:</label>
+          <input type="password" name="password" required id="password" ngModel #password="ngModel" class="form-control" pattern="[A-Za-z0-9]{1,20}">
+          <div class="md-errors-spacer" [hidden]="password.valid || password.untouched">
+            <div *ngIf="password.errors && password.errors.required">
+              Password is required
+            </div>
+            <div *ngIf="password.errors && password.errors.pattern">
+              Password is invalid
+            </div>
+          </div>
+
+        </div>
+        <button class="btn btn-primary" type="submit" [disabled]="!f.valid">Submit</button>
+
+      </form>
     </div>
+
+
+  </div>
+  <hr>
+  <div class="row">
+    <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+      <h3>Your Data</h3>
+      <p>Email : {{formData.email}}</p>
+      <p>Subscriptions : {{formData.subscriptions}}</p>
+      <p>Passswod : {{formData.password}}</p>
+
+
+    </div>
+
   </div>
 </div>
