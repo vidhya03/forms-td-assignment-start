@@ -1,3 +1,5 @@
+// shoud start with export
+
 export class FormSubmit {
   constructor(
     public email: string,
