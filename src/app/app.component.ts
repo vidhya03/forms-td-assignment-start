@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { HistoryService } from './history.service';
 
 @Component({
   selector: 'app-root',
@@ -7,7 +8,7 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  constructor() {
+  constructor(private history: HistoryService) {
     console.log('testing');
   }
   defaultSubscriptions = 'adv';
@@ -38,10 +39,11 @@ export class AppComponent implements OnInit {
     //  this.defaultsubscription
   }
 
-
   public onSubmit() {
     this.formData.email = this.form.value.email;
     this.formData.subscriptions = this.form.value.subscriptions;
     this.formData.password = this.form.value.password;
+    this.history.append(this.formData);
+    console.log(this.history.formSubmit);
   }
 }
