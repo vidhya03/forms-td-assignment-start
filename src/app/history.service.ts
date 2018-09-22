@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { FormSubmit } from './formsubmit.model';
 
 @Injectable({
   providedIn: 'root'
@@ -9,21 +10,13 @@ export class HistoryService {
   }
 
   public get formSubmit(): FormSubmit[] {
-    return this._fomSubmit;
+    return this._fomSubmit.concat([]);
   }
 
- public set formSubmit(formSubmit: FormSubmit[]) {
-    this._fomSubmit.concat(formSubmit);
-  }
+
   public append(formSubmit: FormSubmit) {
     this._fomSubmit.push(formSubmit);
   }
 }
 
-class FormSubmit {
-  constructor(
-    public email: string,
-    public subscriptions: string,
-    public password: string
-  ) {}
-}
+
