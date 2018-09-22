@@ -44,6 +44,12 @@ export class AppComponent implements OnInit {
     this.formData.subscriptions = this.form.value.subscriptions;
     this.formData.password = this.form.value.password;
     this.history.append(this.formData);
+    this.form.setValue({
+      email: '',
+    subscriptions: '',
+    password: ''
+
+    });
     console.log(this.history.formSubmit);
   }
 }

@@ -61,11 +61,13 @@
       <p>Subscriptions : {{formData.subscriptions}}</p>
       <p>Passswod : {{formData.password}}</p>
     </div>
+    <h1 class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">History</h1>
     <div *ngFor="let historyForm of history.formSubmit"  class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
-        <h3>Your Data</h3>
+
         <p>Email : {{historyForm.email}}</p>
         <p>Subscriptions : {{historyForm.subscriptions}}</p>
         <p>Passswod : {{historyForm.password}}</p>
+        <hr>
       </div>
   </div>
 </div>
