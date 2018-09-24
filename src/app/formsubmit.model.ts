@@ -1,6 +1,10 @@
 // shoud start with export
-
-export class FormSubmit {
+export interface IFormSubmit {
+  email?: string;
+  subscriptions?: string;
+  password?: string;
+}
+export class FormSubmit implements IFormSubmit {
   constructor(
     public email: string,
     public subscriptions: string,
