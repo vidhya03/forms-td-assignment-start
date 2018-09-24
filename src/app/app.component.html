@@ -16,15 +16,18 @@
       <form (ngSubmit)="onSubmit()" #f="ngForm">
         <div class="form-group">
           <label for="email">Mail:</label>
-          <input required email class="form-control" ngModel #email="ngModel" type="email" name="email" id="email" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$">
+          <!-- <input required email class="form-control" ngModel #email="ngModel" type="email" name="email" id="email" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"> -->
+          <input type="email" id="email" class="form-control" ngModel name="email" required email #email="ngModel">
           <div class="md-errors-spacer" [hidden]="email.valid || email.untouched">
             <div *ngIf="email.errors && email.errors.required">
               Email is required
             </div>
-            <div *ngIf="email.errors && email.errors.pattern">
+            <div *ngIf=" !(email.errors && email.errors.required) && email.invalid">
               Email is invalid
             </div>
           </div>
+          <!-- <span class="help-block" *ngIf="!email.errors.required && !email.valid && email.touched">Please enter a valid email</span> -->
+          <!-- <span class="help-block" *ngIf="!email.valid && email.touched">Please enter a valid email</span> -->
         </div>
         <div class="form-group">
           <label for="subscription">Subscription:</label>
@@ -61,13 +64,13 @@
       <p>Subscriptions : {{formData.subscriptions}}</p>
       <p>Passswod : {{formData.password}}</p>
     </div>
-    <h1 class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">History</h1>
-    <div *ngFor="let historyForm of history.formSubmit"  class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+    <h1 *ngIf="history.formSubmit?.length > 0" class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">History</h1>
+    <div *ngFor="let historyForm of history.formSubmit" class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
 
-        <p>Email : {{historyForm.email}}</p>
-        <p>Subscriptions : {{historyForm.subscriptions}}</p>
-        <p>Passswod : {{historyForm.password}}</p>
-        <hr>
-      </div>
+      <p>Email : {{historyForm.email}}</p>
+      <p>Subscriptions : {{historyForm.subscriptions}}</p>
+      <p>Passswod : {{historyForm.password}}</p>
+      <hr>
+    </div>
   </div>
 </div>
